@@ -326,14 +326,15 @@ input, textarea, select {
   border-radius: 8px;
   border: 1px solid #ccc;
 }
-/* ===== MODAL GENERAL ===== */
+/* ===== MODAL OSCURO / DORADO / MORADO ===== */
+
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0,0,0,0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -341,47 +342,111 @@ input, textarea, select {
 }
 
 .modal.hidden {
-  display: none;
+  display: none !important;
 }
 
 .modal-content {
-  background: #ffffff;
+  background: #0d0d0d;
   width: 92%;
   max-width: 950px;
   max-height: 92vh;
-  padding: 25px;
-  border-radius: 10px;
+  padding: 35px;
+  border-radius: 14px;
   overflow-y: auto;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+  border: 2px solid #a67c00;
 }
 
-/* Cerrar */
+/* BOTÓN CERRAR */
 .close-btn {
   float: right;
-  font-size: 32px;
+  font-size: 34px;
   cursor: pointer;
+  color: #d4af37;
+  font-weight: bold;
   margin-top: -10px;
+  transition: 0.3s;
 }
 
-/* Bloques internos */
+.close-btn:hover {
+  color: #f2c94c;
+}
+
+/* TÍTULO PRINCIPAL */
+.titulo-modal {
+  color: #d4af37;
+  font-size: 1.9rem;
+  margin-bottom: 25px;
+  text-align: center;
+  border-bottom: 2px solid #4b0082;
+  padding-bottom: 12px;
+}
+
+/* BLOQUES INTERNOS */
 .bloque-modal {
-  margin-top: 20px;
+  margin-top: 35px;
 }
 
 .bloque-modal h3 {
-  margin-bottom: 8px;
-  color: #2c003e;
+  color: #b084f5; /* MORADO ELEGANTE */
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
-/* IMÁGENES RESPONSIVAS, ALTA CALIDAD */
+/* TEXTO DENTRO DEL MODAL */
+.bloque-modal p,
+.bloque-modal ul {
+  color: #f2f2f2;
+  font-size: 1.05rem;
+}
+
+.bloque-modal ul {
+  padding-left: 20px;
+}
+
+.bloque-modal li {
+  margin-bottom: 6px;
+}
+
+/* IMÁGENES DE DIAGRAMAS MUY ALTAS Y RESPONSIVAS */
+.fig-modal {
+  margin-top: 25px;
+  margin-bottom: 45px; /* ESPACIO GRANDE BAJO CADA IMAGEN */
+}
+
 .img-modal {
   width: 100%;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-top: 10px;
-  image-rendering: auto;
+  border-radius: 10px;
+  border: 2px solid #4b0082;
+  display: block;
   image-rendering: high-quality;
+  image-rendering: auto;
+  transition: transform 0.2s ease-in-out;
 }
 
+/* Pequeño zoom al pasar el mouse (elegante) */
+.img-modal:hover {
+  transform: scale(1.01);
+}
 
+/* PIES DE FOTO */
+.fig-modal figcaption {
+  text-align: center;
+  margin-top: 8px;
+  color: #d4af37;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
 
+/* GRID DE DIAGRAMAS */
+.imagenes-diagramas {
+  display: grid;
+  gap: 35px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 25px;
+}
+
+.imagenes-diagramas figure {
+  margin-bottom: 40px; /* Separación amplia */
+}
