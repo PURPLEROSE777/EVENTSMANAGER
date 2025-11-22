@@ -276,6 +276,56 @@ input, textarea, select {
   background-color: white;
   border-radius: 8px;
 }
+/* === MODAL GENERAL === */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 850px;
+  padding: 25px;
+  border-radius: 10px;
+  overflow-y: auto;
+  max-height: 90vh;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+/* Botón cerrar */
+.close-btn {
+  display: inline-block;
+  font-size: 30px;
+  float: right;
+  cursor: pointer;
+}
+
+/* === IMÁGENES RESPONSIVAS === */
+.imagenes-diagramas {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-top: 15px;
+}
+
+.imagenes-diagramas img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
 
 
 
