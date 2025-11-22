@@ -252,28 +252,30 @@
       localStorage.removeItem("loggedInUser");
       window.location.href = "index.html";
     }
-    //Boton modal
-  <script>
-  const btnModal = document.getElementById("btn-info-proyecto");
-  const modal = document.getElementById("modal-proyecto");
-  const cerrarModal = document.getElementById("cerrar-modal");
+    
+  // === MODAL DEL PROYECTO ===
+const btnModal = document.getElementById("btn-info-proyecto");
+const modal = document.getElementById("modal-proyecto");
+const cerrarModal = document.getElementById("cerrar-modal");
 
-  btnModal.addEventListener("click", () => {
-    modal.classList.remove("hidden");
-  });
+btnModal.addEventListener("click", () => {
+  modal.classList.remove("hidden");
+});
 
-  cerrarModal.addEventListener("click", () => {
-    modal.classList.add("hidden");
-  });
+cerrarModal.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
 
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) modal.classList.add("hidden");
-  });
+window.addEventListener("click", (e) => {
+  if (e.target === modal) modal.classList.add("hidden");
+});
+
 </script>
 
   </script>  
 </body>
 </html>
+
 
 
 
