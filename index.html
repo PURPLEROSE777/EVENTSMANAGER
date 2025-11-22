@@ -81,6 +81,98 @@
       Sobre el proyecto
     </button>
   </div>
+
+  <!-- === MODAL DE INFORMACIÓN DEL PROYECTO (Pegar justo DESPUÉS del <footer>) === -->
+<div id="modal-proyecto" class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="titulo-modal">
+  <div class="modal-content" role="document">
+    <button id="cerrar-modal" class="close-btn" aria-label="Cerrar modal">&times;</button>
+
+    <h2 id="titulo-modal" class="titulo-modal">EventsManager – Documentación técnica</h2>
+
+    <!-- BLOQUES SINTÉTICOS, TÉCNICOS Y LISTOS PARA COPIAR/PEGAR -->
+    <section class="bloque-modal">
+      <h3>1. Introducción</h3>
+      <p>Plataforma web para gestión integral de eventos: inscripciones, stands, control de aforo, facturación y reportes.</p>
+    </section>
+
+    <section class="bloque-modal">
+      <h3>2. Identificación del Problema</h3>
+      <p>Fragmentación de herramientas, procesos manuales y falta de cumplimiento local (Ley 1581/2012) que afectan trazabilidad y eficiencia operativa.</p>
+    </section>
+
+    <section class="bloque-modal">
+      <h3>3. Marco Conceptual</h3>
+      <ul>
+        <li>Sistema de Gestión de Eventos</li>
+        <li>Transformación Digital</li>
+        <li>UX y Accesibilidad Multiplataforma</li>
+      </ul>
+    </section>
+
+    <section class="bloque-modal">
+      <h3>4. Arquitectura (resumen)</h3>
+      <p>Cliente (SPA) – API REST – Base de datos relacional. Autenticación JWT, cifrado TLS, backups programados.</p>
+      <figure class="fig-modal">
+        <img src="arquitectura@2x.png" srcset="arquitectura.png 1x, arquitectura@2x.png 2x" alt="Arquitectura del sistema" class="img-modal" loading="lazy">
+        <figcaption>Arquitectura — alta resolución (use la imagen @2x si está disponible).</figcaption>
+      </figure>
+    </section>
+
+    <section class="bloque-modal">
+      <h3>5. Modelo Relacional / Diagrama ER</h3>
+      <figure class="fig-modal">
+        <img src="basedatos@2x.png" srcset="basedatos.png 1x, basedatos@2x.png 2x" alt="Diagrama entidad-relación" class="img-modal" loading="lazy">
+        <figcaption>Diagrama ER (alta resolución).</figcaption>
+      </figure>
+    </section>
+
+    <section class="bloque-modal">
+      <h3>6. Diagramas UML</h3>
+      <div class="imagenes-diagramas">
+        <figure>
+          <img src="clases@2x.png" srcset="clases.png 1x, clases@2x.png 2x" alt="Diagrama de clases" class="img-modal" loading="lazy">
+          <figcaption>Diagrama de clases</figcaption>
+        </figure>
+        <figure>
+          <img src="flujo@2x.png" srcset="flujo.png 1x, flujo@2x.png 2x" alt="Diagrama de actividades" class="img-modal" loading="lazy">
+          <figcaption>Diagrama de actividades</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="bloque-modal">
+      <h3>7. Requisitos (vitales)</h3>
+      <ul>
+        <li>RF-01 Inscripción y QR</li>
+        <li>RF-02 Gestión de eventos (creación/edición/aforo)</li>
+        <li>RF-03 Gestión de stands</li>
+        <li>RF-04 Reportes (PDF/Excel)</li>
+        <li>RF-05 Facturación (DIAN)</li>
+        <li>RF-06 Notificaciones segmentadas</li>
+      </ul>
+    </section>
+
+    <section class="bloque-modal">
+      <h3>8. No funcionales (clave)</h3>
+      <ul>
+        <li>Compatibilidad multiplataforma</li>
+        <li>Tiempo de carga < 2s</li>
+        <li>Cifrado TLS y AES en datos sensibles</li>
+        <li>Backups cada 6 horas</li>
+      </ul>
+    </section>
+
+    <section class="bloque-modal">
+      <h3>9. Presupuesto y Cronograma (resumen)</h3>
+      <p>Rango total estimado: 15M – 40M COP. (Fases: Análisis 2 sem, UX 2 sem, Desarrollo 6 sem, Pruebas 2 sem, Lanzamiento 2 sem)</p>
+    </section>
+
+    <div class="modal-footer">
+      <small>Desarrollado por <strong>Alan Santiago Pérez</strong> — 2025</small>
+    </div>
+  </div>
+</div>
+
 </footer>
 
 
@@ -160,48 +252,11 @@
       localStorage.removeItem("loggedInUser");
       window.location.href = "index.html";
     }
-    // === MODAL DEL PROYECTO ===
-const btnModal = document.getElementById("btn-info-proyecto");
-const modal = document.getElementById("modal-proyecto");
-const cerrarModal = document.getElementById("cerrar-modal");
-
-btnModal.addEventListener("click", () => {
-  modal.classList.remove("hidden");
-});
-
-cerrarModal.addEventListener("click", () => {
-  modal.classList.add("hidden");
-});
-
-window.addEventListener("click", (e) => {
-  if (e.target === modal) modal.classList.add("hidden");
-});
-
-// === MODAL DEL PROYECTO ===
-const btnModal = document.getElementById("btn-info-proyecto");
-const modal = document.getElementById("modal-proyecto");
-const cerrarModal = document.getElementById("cerrar-modal");
-
-btnModal.addEventListener("click", () => {
-  modal.classList.remove("hidden");
-});
-
-cerrarModal.addEventListener("click", () => {
-  modal.classList.add("hidden");
-});
-
-window.addEventListener("click", (e) => {
-  if (e.target === modal) modal.classList.add("hidden");
-});
-
-
-    
-  </script>
   
-
-  
+  </script>  
 </body>
 </html>
+
 
 
 
