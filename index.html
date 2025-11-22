@@ -73,11 +73,16 @@
     </iframe>
   </div>
 
-  <footer class="footer">
-    <div class="footer-content">
-      <p>© Copyright <span>Escuela tecnológica instituto técnico central</span> - 2025</p>
-    </div>
-  </footer>
+<footer class="footer">
+  <div class="footer-content">
+    <p>© 2025 - Desarrollado por <strong>Alan Santiago Pérez</strong></p>
+
+    <button id="btn-info-proyecto" class="btn-gold" style="margin-top:10px;">
+      Sobre el proyecto
+    </button>
+  </div>
+</footer>
+
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -153,9 +158,10 @@
 
     function logout() {
       localStorage.removeItem("loggedInUser");
-      window.location.href = "home.html";
+      window.location.href = "index.html";
     }
   </script>
 </body>
 </html>
+
 
