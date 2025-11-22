@@ -82,123 +82,221 @@
     </button>
   </div>
 
-<!-- === MODAL PROYECTO (NUEVO, OSCURO, DORADO, MORADO, IMÁGENES HD) === -->
+<!-- === MODAL PROYECTO (VERSIÓN COMPLETA, OSCURA, DORADO + MORADO) === -->
 <div id="modal-proyecto" class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="titulo-modal">
 
   <div class="modal-content" role="document"
-       style="background:#0a0a0a; color:#d4af37; border:2px solid #4b0082;">
+       style="background:#0a0a0a; color:#d4af37; border:2px solid #4b0082; max-height:90vh; overflow-y:auto; padding-bottom:40px;">
 
     <button id="cerrar-modal" class="close-btn" aria-label="Cerrar modal"
             style="color:#d4af37;">&times;</button>
 
     <h2 id="titulo-modal" 
         style="text-align:center; color:#b57eff; margin-bottom:25px; font-size:2rem;">
-      EventsManager – Documentación técnica
+      EventsManager – Documento Técnico & Plan de Negocio
     </h2>
 
-    <!-- =========================== 1 =========================== -->
+    <!-- ======================================================== -->
+    <!-- ===================== 1. INTRODUCCIÓN =================== -->
+    <!-- ======================================================== -->
     <section class="bloque-modal">
-      <h3 style="color:#b57eff; margin-bottom:15px;">1. Introducción</h3>
-      <p>Plataforma web para gestionar eventos, inscripciones, stands, aforo, facturación y reportes.</p>
+      <h3 style="color:#b57eff;">1. Introducción</h3>
+      <p>Plataforma web dedicada a la gestión integral de eventos: administración de asistentes, espacios, aforo, pagos, reportes y control operativo en tiempo real.</p>
     </section>
 
-    <!-- =========================== 2 =========================== -->
+    <!-- ======================================================== -->
+    <!-- ========== 2. IDENTIFICACIÓN DEL PROBLEMA =============== -->
+    <!-- ======================================================== -->
     <section class="bloque-modal">
-      <h3 style="color:#b57eff; margin-bottom:15px;">2. Identificación del Problema</h3>
-      <p>Uso de múltiples herramientas aisladas, procesos manuales y falta de trazabilidad integral.</p>
+      <h3 style="color:#b57eff;">2. Identificación del Problema</h3>
+      <p>La gestión de eventos se apoya en herramientas aisladas, procesos manuales y baja trazabilidad. La falta de integración genera retrasos, errores y sobrecostos.</p>
     </section>
 
-    <!-- =========================== 3 =========================== -->
+    <!-- ======================================================== -->
+    <!-- =================== 3. MARCO CONCEPTUAL ================= -->
+    <!-- ======================================================== -->
     <section class="bloque-modal">
-      <h3 style="color:#b57eff; margin-bottom:15px;">3. Marco Conceptual</h3>
+      <h3 style="color:#b57eff;">3. Marco Conceptual</h3>
       <ul>
         <li>Sistema de Gestión de Eventos</li>
-        <li>Digitalización de Procesos</li>
+        <li>Transformación Digital</li>
         <li>Experiencia de Usuario</li>
+        <li>Accesibilidad Multiplataforma</li>
       </ul>
     </section>
 
-    <!-- =========================== 4 =========================== -->
+    <!-- ======================================================== -->
+    <!-- ==================== 4. MARCO TEÓRICO =================== -->
+    <!-- ======================================================== -->
     <section class="bloque-modal">
-      <h3 style="color:#b57eff; margin-bottom:15px;">4. Arquitectura (Resumen)</h3>
-      <p>SPA + API REST + Base de datos relacional. Autenticación JWT, cifrado TLS, backups programados.</p>
-
-      <!-- ESPACIO PARA IMAGEN HD -->
-      <div style="margin-top:25px;">
-        <img src="arquitectura@2x.png"
-             srcset="arquitectura.png 1x, arquitectura@2x.png 2x"
-             class="img-modal"
-             style="width:100%; border:1px solid #4b0082; border-radius:12px; image-rendering:high-quality;">
-      </div>
+      <h3 style="color:#b57eff;">4. Marco Teórico</h3>
+      <p>El sector de eventos en Colombia crece sin soluciones tecnológicas locales robustas. EventsManager surge como respuesta adaptada a las necesidades logísticas, normativas y operativas del contexto nacional.</p>
     </section>
 
-    <!-- =========================== 5 =========================== -->
+    <!-- ======================================================== -->
+    <!-- ================== 5. MARCO METODOLÓGICO =============== -->
+    <!-- ======================================================== -->
     <section class="bloque-modal">
-      <h3 style="color:#b57eff; margin-bottom:15px;">5. Modelo Relacional / ER</h3>
-
-      <div style="margin-top:25px;">
-        <img src="basedatos@2x.png"
-             srcset="basedatos.png 1x, basedatos@2x.png 2x"
-             class="img-modal"
-             style="width:100%; border:1px solid #4b0082; border-radius:12px;">
-      </div>
+      <h3 style="color:#b57eff;">5. Marco Metodológico</h3>
+      <p>Metodología ágil, iterativa e incremental. Validación continua con usuarios reales, modelado UML y despliegues por módulos funcionales.</p>
     </section>
 
-    <!-- =========================== 6 =========================== -->
+    <!-- ======================================================== -->
+    <!-- ===================== 6. ANÁLISIS DOFA ================== -->
+    <!-- ======================================================== -->
     <section class="bloque-modal">
-      <h3 style="color:#b57eff; margin-bottom:15px;">6. Diagramas UML</h3>
+      <h3 style="color:#b57eff;">6. Análisis SWOT / DOFA</h3>
 
-      <div style="display:grid; gap:25px; margin-top:25px;">
-        <img src="clases@2x.png"
-             srcset="clases.png 1x, clases@2x.png 2x"
-             class="img-modal"
-             style="width:100%; border:1px solid #4b0082; border-radius:12px;">
-
-        <img src="flujo@2x.png"
-             srcset="flujo.png 1x, flujo@2x.png 2x"
-             class="img-modal"
-             style="width:100%; border:1px solid #4b0082; border-radius:12px;">
-      </div>
-    </section>
-
-    <!-- =========================== 7 (sin 7.3) =========================== -->
-    <section class="bloque-modal">
-      <h3 style="color:#b57eff; margin-bottom:15px;">7. Requisitos Funcionales</h3>
+      <h4 style="color:#d4af37;">6.1. Matriz DOFA</h4>
       <ul>
-        <li>RF-01 Inscripción y QR</li>
-        <li>RF-02 Gestión de eventos (CRUD + aforo)</li>
-        <li>RF-03 Gestión de stands</li>
-        <li>RF-04 Reportes PDF/Excel</li>
-        <li>RF-05 Facturación</li>
-        <li>RF-06 Notificaciones segmentadas</li>
+        <li><strong>Debilidades:</strong> Bajo capital inicial, resistencia al cambio.</li>
+        <li><strong>Oportunidades:</strong> Demanda creciente de digitalización.</li>
+        <li><strong>Fortalezas:</strong> Solución especializada en eventos grandes.</li>
+        <li><strong>Amenazas:</strong> Software extranjero consolidado.</li>
       </ul>
     </section>
 
-    <!-- =========================== 8 =========================== -->
+    <!-- ======================================================== -->
+    <!-- ======================== 7. MATRICES ==================== -->
+    <!-- ======================================================== -->
     <section class="bloque-modal">
-      <h3 style="color:#b57eff; margin-bottom:15px;">8. Requisitos No Funcionales</h3>
+      <h3 style="color:#b57eff;">7. Matrices</h3>
+
+      <h4 style="color:#d4af37;">7.1. Árbol de Oportunidades</h4>
+      <p>Raíz: Falta de soluciones tecnológicas locales.</p>
+
+      <h4 style="color:#d4af37;">7.2. Árbol de Debilidades</h4>
+      <p>Raíz: Bajo capital inicial. Ramas: MVP, alianzas, convocatorias TIC.</p>
+
+      <h4 style="color:#d4af37;">7.3. Marco Lógico</h4>
       <ul>
-        <li>Carga menor a 2s</li>
-        <li>Cifrado TLS + AES</li>
-        <li>Backups programados</li>
-        <li>Compatibilidad multiplataforma</li>
+        <li>Impacto: +50% eficiencia operativa.</li>
+        <li>Resultado: Plataforma con 5 módulos clave.</li>
+        <li>Actividades: Desarrollo modular + validación continua.</li>
       </ul>
     </section>
 
-    <!-- =========================== 9 =========================== -->
+    <!-- ======================================================== -->
+    <!-- ========================= 8. OBJETIVOS ================== -->
+    <!-- ======================================================== -->
     <section class="bloque-modal">
-      <h3 style="color:#b57eff; margin-bottom:15px;">9. Presupuesto y Cronograma</h3>
-      <p>Estimado total: 15M – 40M COP.  
-         Fases: Análisis (2 semanas), UX (2), Desarrollo (6), Pruebas (2), Lanzamiento (2).</p>
+      <h3 style="color:#b57eff;">8. Objetivos</h3>
+      
+      <h4 style="color:#d4af37;">8.1 Objetivo General</h4>
+      <p>Crear una plataforma de gestión de eventos completa, segura y centralizada.</p>
+
+      <h4 style="color:#d4af37;">8.2 Objetivos Específicos</h4>
+      <ul>
+        <li>Automatizar inscripción y acreditación.</li>
+        <li>Gestionar stands y espacios.</li>
+        <li>Controlar aforo.</li>
+        <li>Generar reportes.</li>
+        <li>Manejar facturación y pagos.</li>
+      </ul>
     </section>
 
-    <!-- FOOTER -->
-    <div class="modal-footer" style="margin-top:35px; text-align:center; color:#d4af37;">
-      <small>Desarrollado por <strong>Alan Santiago Pérez</strong> — 2025</small>
+    <!-- ======================================================== -->
+    <!-- ================== 9. REQUISITOS DEL SISTEMA ============ -->
+    <!-- ======================================================== -->
+    <section class="bloque-modal">
+      <h3 style="color:#b57eff;">9. Requisitos Funcionales</h3>
+
+      <ul style="margin-left:15px;">
+        <li><strong>RF-01:</strong> Inscripción y acreditación.</li>
+        <li><strong>RF-02:</strong> Gestión de eventos y aforo.</li>
+        <li><strong>RF-03:</strong> Gestión de stands y expositores.</li>
+        <li><strong>RF-04:</strong> Reportes y control.</li>
+        <li><strong>RF-05:</strong> Facturación y pagos.</li>
+      </ul>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- ======================= 10. DIAGRAMAS =================== -->
+    <!-- ======================================================== -->
+    <section class="bloque-modal">
+      <h3 style="color:#b57eff;">10. Diagramas del Sistema</h3>
+
+      <!-- === ACTIVIDADES === -->
+      <h4 style="color:#d4af37; margin-top:20px;">10.1. Diagrama de Actividades</h4>
+      <img src="actividades.png"
+           class="img-modal"
+           style="width:100%; border:1px solid #4b0082; border-radius:12px;">
+
+      <h5 style="color:#b57eff; margin-top:10px;">Decisiones / Preguntas del Flujo</h5>
+      <ul>
+        <li>¿El usuario está registrado?</li>
+        <li>¿El pago fue validado?</li>
+        <li>¿Hay aforo disponible?</li>
+        <li>¿El stand está libre?</li>
+      </ul>
+
+      <!-- === CASOS DE USO === -->
+      <h4 style="color:#d4af37; margin-top:25px;">10.2. Diagrama de Casos de Uso</h4>
+      <img src="casosuso.png"
+           class="img-modal"
+           style="width:100%; border:1px solid #4b0082; border-radius:12px;">
+
+      <!-- === ER === -->
+      <h4 style="color:#d4af37; margin-top:25px;">10.3. Modelo Entidad-Relación</h4>
+      <img src="er.png"
+           class="img-modal"
+           style="width:100%; border:1px solid #4b0082; border-radius:12px;">
+
+      <!-- === CLASES === -->
+      <h4 style="color:#d4af37; margin-top:25px;">10.4. Diagrama de Clases</h4>
+      <img src="clases.png"
+           class="img-modal"
+           style="width:100%; border:1px solid #4b0082; border-radius:12px;">
+
+       <!-- === OBJETOSS === -->
+      <h4 style="color:#d4af37; margin-top:25px;">10.5. Diagrama de Objetos</h4>
+      <img src="objetos.png"
+           class="img-modal"
+           style="width:100%; border:1px solid #4b0082; border-radius:12px;">
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- ===================== 11. MOCKUP ======================== -->
+    <!-- ======================================================== -->
+    <section class="bloque-modal">
+      <h3 style="color:#b57eff;">11. Mockup / Wireframe</h3>
+      <img src="wireframe.png"
+           class="img-modal"
+           style="width:100%; border:1px solid #4b0082; border-radius:12px;">
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- ============ 12. EVALUACIÓN DE IMPACTO ================== -->
+    <!-- ======================================================== -->
+    <section class="bloque-modal">
+      <h3 style="color:#b57eff;">12. Evaluación de Impacto</h3>
+      <p>Incremento de eficiencia, reducción de errores operativos y mejora en la experiencia de asistentes y organizadores.</p>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- ================== 13. PRESUPUESTO ====================== -->
+    <!-- ======================================================== -->
+    <section class="bloque-modal">
+      <h3 style="color:#b57eff;">13. Presupuesto y Cronograma</h3>
+      <p>Estimado: 15–40 millones COP.</p>
+      <p>Fases: análisis, UX, desarrollo, pruebas y despliegue.</p>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- ======================== FOOTER ========================= -->
+    <!-- ======================================================== -->
+    <div class="modal-footer" 
+         style="margin-top:45px; text-align:center; color:#d4af37; padding:15px 0; border-top:1px solid #4b0082;">
+      <small>
+        <strong>EventsManager © 2025</strong><br>
+        Proyecto académico — Escuela Tecnológica Instituto Técnico Central<br>
+        Autores: <strong>Alan Santiago Pérez Pinilla</strong> & <strong>Wilson Stiven Niño Villabo</strong>
+      </small>
     </div>
 
   </div>
 </div>
+
 
 
 </footer>
@@ -303,6 +401,7 @@ window.addEventListener("click", (e) => {
   </script>  
 </body>
 </html>
+
 
 
 
