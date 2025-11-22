@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestión de Espacios - Events Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="espacios.js"></script>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-top">
+      <span class="logo">EVENTS MANAGER</span>
+      <a href="home.html" class="login-button">Volver al inicio</a>
+    </div>
+    <nav class="navbar">
+      <a href="home.html" id="menu-home">HOME</a>
+      <a href="gestionEventos.html" id="menu-gestion">EVENTOS</a>
+      <a href="tickets.html" id="menu-tickets">TICKETS</a>
+      <a href="espacios.html" id="menu-espacios">ALQUILER DE STANDS</a>
+      <a href="contacto.html" id="menu-contacto">CONTACTO</a>
+    </nav>
+  </header>
+
+  <section class="section-dark">
+    <div class="gestion-layout expand-layout" id="gestionLayout">
+      
+      <!-- Lista de stands -->
+      <div class="gestion-lista card-centered">
+        <h2 style="text-align:center; color:#2c003e;">Stands del Evento</h2>
+
+        <div id="btn-contenedor" style="text-align:center; margin-bottom:20px;">
+          <button id="nuevoStandBtn" class="btn-gold">➕ NUEVO STAND</button>
+        </div>
+
+        <!-- Código de privilegio (STAFF) -->
+        <div id="codigoPanel" class="card-centered hidden" style="margin-top: 30px; max-width: 400px;">
+          <h3 style="color:#2c003e;">Usar Código de Privilegio</h3>
+          <label for="inputCodigoPrivilegio">Código (8 caracteres):</label>
+          <input type="text" id="inputCodigoPrivilegio" maxlength="8" style="text-transform: uppercase;" />
+          <button onclick="verificarCodigoPrivilegio()" class="btn-gold" style="margin-top:10px;">Validar</button>
+          <p id="resultadoCodigo" style="margin-top: 10px; font-weight: bold;"></p>
+        </div>
+
+      <!-- STAFF: panel de edición actualizado -->
+<div id="staffEditPanel" class="card-centered hidden" style="margin-top: 30px; max-width: 600px;">
+  <h3 style="color:#2c003e;">Stand Asignado</h3>
+  <p><strong>Stand:</strong> <span id="staffStandNombre"></span></p>
+  <p><strong>Evento:</strong> <span id="staffStandEvento"></span></p>
+
+  <label for="staffDescripcionNueva">Descripción:</label>
+  <textarea id="staffDescripcionNueva" rows="3" disabled></textarea>
+
+  <div style="margin-top: 15px; display: flex; flex-wrap: wrap; gap: 10px;">
+    <button onclick="habilitarEdicionStaff()" class="btn-gold">✏️ Editar descripción</button>
+    <button id="btnGuardarStaffDesc" class="btn-gold hidden" onclick="guardarDescripcionStaff()">💾 Guardar Cambios</button>
+    <button id="btnCancelarEdicion" class="btn hidden" onclick="cancelarEdicionStaff()">Cancelar</button>
+    <button onclick="toggleListaParticipantes()" class="btn-gold">👥 Ver Participantes</button>
+    <button onclick="cancelarInscripcion()" class="btn">❌ Cancelar Inscripción</button>
+  </div>
+
+  <p id="staffGuardarResultado" style="margin-top:10px; font-weight:bold;"></p>
+</div>
+
+
+        <!-- Panel de participantes del stand (solo staff) -->
+        <div id="panelParticipantes" class="card-centered hidden" style="margin-top: 30px; max-width: 700px;">
+          <h3 style="text-align:center; color:#2c003e;">Usuarios en tu Stand</h3>
+          <div id="usuariosEnStand" class="ticket-grid"></div>
+          <div style="text-align:center; margin-top:15px;">
+            <button onclick="toggleListaParticipantes()" class="btn">Cerrar</button>
+          </div>
+        </div>
+
+        <!-- Vista de tarjetas de stands -->
+        <div id="standListContainer" class="ticket-grid">
+          <!-- Se llena desde JS -->
+        </div>
+      </div>
+
+      <!-- Formulario gestor -->
+      <div id="standFormPanel" class="gestion-form card-centered hidden">
+        <h3 style="text-align:center; color:#2c003e;">Nuevo Stand</h3>
+
+        <label for="standNombre">Nombre o número del stand:</label>
+        <input type="text" id="standNombre" required />
+
+        <label for="standTipo">Tipo / temática:</label>
+        <input type="text" id="standTipo" required />
+
+        <label for="standDescripcion">Descripción:</label>
+        <textarea id="standDescripcion" rows="3" required></textarea>
+
+        <label for="standEvento">Asociar a evento:</label>
+        <select id="standEvento"></select>
+
+        <div id="privilegeCodeField">
+          <label for="standPrivilegio">Código de privilegio (8 caracteres):</label>
+          <input type="text" id="standPrivilegio" maxlength="8" pattern="[A-Za-z0-9]{8}" title="8 caracteres alfanuméricos"/>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; margin-top:20px;">
+          <button id="guardarStandBtn" class="btn-gold">Guardar Stand</button>
+          <button type="button" onclick="cerrarFormularioStand()" class="btn">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function ocultar(id) {
+      const el = document.getElementById(id);
+      if (el) el.style.display = "none";
+    }
+
+    function toggleListaParticipantes() {
+      const panel = document.getElementById("panelParticipantes");
+      if (panel.classList.contains("hidden")) {
+        cargarParticipantesStand();
+        panel.classList.remove("hidden");
+      } else {
+        panel.classList.add("hidden");
+      }
+    }
+
+    function cargarParticipantesStand() {
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+      const asignaciones = JSON.parse(localStorage.getItem("asignacionesStaff")) || [];
+      const lista = document.getElementById("usuariosEnStand");
+      lista.innerHTML = "";
+
+      const miAsignacion = asignaciones.find(a => a.email === user.email);
+      if (!miAsignacion) {
+        lista.innerHTML = "<p>No estás asignado a ningún stand.</p>";
+        return;
+      }
+
+      const mismos = asignaciones.filter(a =>
+        a.stand === miAsignacion.stand && a.evento === miAsignacion.evento
+      );
+
+      mismos.forEach(m => {
+        const div = document.createElement("div");
+        div.className = "ticket-card";
+        div.innerHTML = `
+          <p><strong>Usuario:</strong> ${m.email.split("@")[0]}</p>
+          <p><strong>Correo:</strong> ${m.email}</p>
+        `;
+        lista.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>

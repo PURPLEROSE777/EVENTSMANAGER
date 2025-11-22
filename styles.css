@@ -1,0 +1,281 @@
+/* === RESETEO GLOBAL === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0e0e0e;
+  color: #f2f2f2;
+  line-height: 1.6;
+}
+
+/* === HEADER === */
+.main-header {
+  background-color: #2c003e;
+  padding: 20px 30px;
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #d4af37;
+}
+
+.login-button {
+  background: linear-gradient(to right, #d4af37, #a67c00);
+  color: #0e0e0e;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background: linear-gradient(to right, #f2c94c, #d4af37);
+}
+
+/* === NAVBAR === */
+.navbar {
+  margin-top: 15px;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.navbar a {
+  color: #f2f2f2;
+  padding: 10px 18px;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: #4b0082;
+}
+
+/* === SECCIÓN PRINCIPAL === */
+.main-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 50px 20px;
+  background-color: #1a1a1a;
+  gap: 40px;
+}
+
+.main-content {
+  font-size: 1.3rem;
+  padding: 20px;
+  color: #d4af37;
+}
+
+.main-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+}
+
+/* === EVENTOS EN MOSAICO === */
+.event-recommendation-section,
+.ticket-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 40px 20px;
+  background-color: #121212;
+}
+
+.event-card, .ticket-card {
+  background-color: #ffffff;
+  border: 2px solid #d4af37;
+  color: #111;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
+}
+
+/* === RECOMENDACIONES === */
+.recommendations-side {
+  background-color: #1a1a1a;
+  border-left: 3px solid #d4af37;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.recommendations-side h3 {
+  color: #d4af37;
+  margin-bottom: 15px;
+}
+
+.recommendations-side ul {
+  list-style: square;
+  padding-left: 20px;
+}
+
+/* === BOTONES GENERALES === */
+.btn, .btn-gold {
+  display: inline-block;
+  padding: 12px 20px;
+  background: linear-gradient(to right, #d4af37, #a67c00);
+  color: #0e0e0e;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.btn:hover, .btn-gold:hover {
+  background: linear-gradient(to right, #f2c94c, #d4af37);
+}
+
+/* === FORMULARIO DE CONTACTO === */
+.dynamic-contact {
+  background-color: #0e0e0e;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: auto;
+  display: grid;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: 1px solid #444;
+  background-color: #1a1a1a;
+  color: #fff;
+  border-radius: 8px;
+}
+
+/* === ESTILO GLOBAL PARA INPUTS === */
+input, textarea, select {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* === CONTENEDORES BLANCOS CENTRADOS === */
+.card-centered {
+  background-color: #ffffff;
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+  color: #111;
+}
+
+/* === FONDO OSCURO DE SECCIÓN === */
+.section-dark {
+  background-color: #0e0e0e;
+  padding: 60px 20px;
+}
+
+/* === MAPA === */
+.mapa-contenido iframe {
+  width: 100%;
+  height: 450px;
+  border: none;
+  border-radius: 12px;
+  margin: 40px 0;
+}
+
+/* === FOOTER === */
+.footer {
+  background-color: #000;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.footer p {
+  color: #d4af37;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .main-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .navbar {
+    justify-content: center;
+  }
+
+  .event-recommendation-section,
+  .ticket-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* === OCULTAR ELEMENTOS COMO MODALES === */
+.hidden {
+  display: none !important;
+}
+/* === GESTIÓN: LAYOUT ACTIVO EN DOS COLUMNAS === */
+.gestion-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.gestion-layout.expand-layout {
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.gestion-lista {
+  flex: 1 1 100%;
+}
+
+.gestion-layout.expand-layout .gestion-lista {
+  flex: 1 1 55%;
+}
+
+.gestion-form {
+  flex: 1 1 40%;
+}
+
+.gestion-form label {
+  display: block;
+  margin-bottom: 6px;
+  margin-top: 14px;
+  font-weight: bold;
+  color: #2c003e;
+}
+
+.gestion-form input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+.resumen-pago {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 2px solid #a67c00;
+  background-color: white;
+  border-radius: 8px;
+}
+
+
+

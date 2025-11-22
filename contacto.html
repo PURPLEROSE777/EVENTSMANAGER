@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto - Events Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-top">
+      <span class="logo">EVENTS MANAGER</span>
+      <a href="home.html" class="login-button">Inicio</a>
+    </div>
+    <nav class="navbar">
+      <a href="home.html" id="menu-home">HOME</a>
+      <a href="gestionEventos.html" id="menu-gestion">GESTIONA TUS EVENTOS</a>
+      <a href="tickets.html" id="menu-tickets">RESERVA TICKETS</a>
+      <a href="espacios.html" id="menu-espacios">ALQUILER DE STANDS</a>
+      <a href="contacto.html" id="menu-contacto">CONTACTANOS</a>
+    </nav>
+  </header>
+
+  <section class="section-dark">
+    <div class="card-centered">
+      <h2 style="text-align:center; color:#2c003e;">Contáctanos</h2>
+      <p style="text-align:center; margin-bottom: 20px;">¿Tienes alguna duda o sugerencia? Nuestro equipo está listo para ayudarte.</p>
+      <form class="contact-form">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required />
+
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo" required />
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+        <button type="submit" class="btn-gold">Enviar</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+      if (user && user.tipo) {
+        if (user.tipo === "asistente") {
+          ocultar("menu-gestion");
+          ocultar("menu-espacios");
+        } else if (user.tipo === "staff") {
+          ocultar("menu-gestion");
+          ocultar("menu-tickets");
+          ocultar("menu-espacios");
+        }
+        // gestor no oculta nada
+      }
+
+      function ocultar(id) {
+        const el = document.getElementById(id);
+        if (el) el.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

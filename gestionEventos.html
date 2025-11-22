@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestión de Eventos</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="datosEventos.js"></script>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-top">
+      <span class="logo">EVENTS MANAGER</span>
+      <a href="#" onclick="logout()" class="login-button">Cerrar Sesión</a>
+    </div>
+    <nav class="navbar">
+      <a href="home.html" id="menu-home">HOME</a>
+      <a href="gestionEventos.html" id="menu-gestion">GESTIONA TUS EVENTOS</a>
+      <a href="tickets.html" id="menu-tickets">RESERVA TICKETS</a>
+      <a href="espacios.html" id="menu-espacios">ALQUILER DE STANDS</a>
+      <a href="contacto.html" id="menu-contacto">CONTACTANOS</a>
+    </nav>
+  </header>
+
+  <section class="section-dark">
+    <div class="gestion-layout" id="gestionLayout">
+      <!-- Lista de eventos -->
+      <div class="gestion-lista card-centered">
+        <h2 style="text-align:center; color:#2c003e;">Gestión de Eventos</h2>
+        <div style="text-align:center; margin-bottom:20px;">
+          <button id="newEventBtn" class="btn-gold">➕ NUEVO EVENTO</button>
+        </div>
+        <div id="eventListContainer" class="ticket-grid">
+          <!-- Eventos cargan aquí -->
+        </div>
+      </div>
+
+      <!-- Formulario lateral -->
+      <div id="formPanel" class="gestion-form card-centered hidden">
+        <h3 style="text-align: center; color: #2c003e;" id="formTitle">Nuevo Evento</h3>
+
+        <label for="eventName">Nombre del evento:</label>
+        <input type="text" id="eventName" />
+
+        <label for="eventDate">Fecha:</label>
+        <input type="date" id="eventDate" />
+
+        <label for="eventLocation">Ubicación:</label>
+        <input type="text" id="eventLocation" />
+
+        <label for="eventCapacity">Capacidad:</label>
+        <input type="number" id="eventCapacity" />
+
+<label for="eventPrice">Precio por ticket ($):</label>
+<input type="number" id="eventPrice" min="0" step="1000" required />
+
+
+        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+          <button id="saveEventBtn" class="btn-gold">Guardar</button>
+          <button type="button" onclick="closeForm()" class="btn">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+      // Protección de acceso
+      if (!user || user.tipo !== "gestor") {
+        alert("Acceso restringido. Solo disponible para gestores.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      // Adaptar menú si se desea (incluso para reutilización)
+      const tipo = user.tipo;
+      if (tipo === "asistente") {
+        ocultar("menu-gestion");
+        ocultar("menu-espacios");
+      } else if (tipo === "staff") {
+        ocultar("menu-gestion");
+        ocultar("menu-tickets");
+        ocultar("menu-espacios");
+      }
+
+      function ocultar(id) {
+        const el = document.getElementById(id);
+        if (el) el.style.display = "none";
+      }
+    });
+
+    // Cierre de sesión global
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

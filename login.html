@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Events Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-top">
+      <span class="logo">EVENTS MANAGER</span>
+      <a href="login.html" class="login-button">LOGIN</a>
+    </div>
+    <nav class="navbar">
+      <a href="home.html" id="menu-home">HOME</a>
+      <a href="gestionEventos.html" id="menu-gestion">GESTIONA TUS EVENTOS</a>
+      <a href="tickets.html" id="menu-tickets">RESERVA TICKETS</a>
+      <a href="espacios.html" id="menu-espacios">ALQUILER DE STANDS</a>
+      <a href="contacto.html" id="menu-contacto">CONTACTANOS</a>
+    </nav>
+  </header>
+
+  <section class="section-dark">
+    <div class="card-centered">
+      <h2 style="text-align: center; color: #2c003e;">Iniciar Sesión</h2>
+      <form id="loginForm" class="contact-form" onsubmit="return loginUsuario(event)">
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required />
+
+        <p id="loginError" style="color: red; font-weight: bold;"></p>
+
+        <button type="submit" class="btn-gold">Ingresar</button>
+      </form>
+      <p style="text-align: center; margin-top: 20px;">
+        ¿No tienes una cuenta? <a href="nuevaCuenta.html" style="color: #a67c00;">Crear cuenta</a>
+      </p>
+    </div>
+  </section>
+
+  <script src="script.js" defer></script>
+
+  <script>
+    // Ocultar menús según rol si ya hay sesión (por ejemplo, si alguien vuelve al login sin cerrar sesión)
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+      if (user && user.tipo) {
+        if (user.tipo === "asistente") {
+          ocultar("menu-gestion");
+          ocultar("menu-espacios");
+        } else if (user.tipo === "staff") {
+          ocultar("menu-gestion");
+          ocultar("menu-tickets");
+          ocultar("menu-espacios");
+        }
+        // gestor ve todo
+      }
+
+      function ocultar(id) {
+        const el = document.getElementById(id);
+        if (el) el.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

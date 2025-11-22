@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zona de Pagos - Events Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="pago.js"></script>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-top">
+      <span class="logo">EVENTS MANAGER</span>
+      <a href="home.html" class="login-button">Inicio</a>
+    </div>
+    <nav class="navbar">
+      <a href="home.html">HOME</a>
+      <a href="tickets.html">TICKETS</a>
+      <a href="contacto.html">CONTACTO</a>
+    </nav>
+  </header>
+
+  <section class="section-dark">
+    <div class="gestion-layout expand-layout">
+      <!-- Resumen -->
+      <div class="card-centered" style="flex:1; max-width:500px;">
+        <h2 style="text-align:center; color:#2c003e;">Resumen de Compra</h2>
+        <div id="resumenPago" style="margin-top:20px;"></div>
+      </div>
+
+      <!-- Formulario de pago -->
+      <div class="card-centered" style="flex:1; max-width:500px;">
+        <h2 style="text-align:center; color:#2c003e;">Método de Pago</h2>
+        <form id="formularioPago">
+          <label for="metodo">Selecciona un método:</label>
+          <select id="metodo" required>
+            <option value="">-- Selecciona --</option>
+            <option value="pse">💻 PSE</option>
+            <option value="efecty">🏪 Efecty</option>
+            <option value="tarjeta">💳 Tarjeta de Crédito / Débito</option>
+          </select>
+
+          <div id="datosBancarios" style="margin-top:20px;"></div>
+
+          <button type="submit" class="btn-gold" style="margin-top:20px;">Confirmar y Pagar</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crear Cuenta - Events Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-top">
+      <span class="logo">EVENTS MANAGER</span>
+      <a href="login.html" class="login-button">Iniciar Sesión</a>
+    </div>
+   <nav class="navbar">
+  <a href="home.html" id="menu-home">HOME</a>
+  <a href="gestionEventos.html" id="menu-gestion">GESTIONA TUS EVENTOS</a>
+  <a href="tickets.html" id="menu-tickets">RESERVA TICKETS</a>
+  <a href="espacios.html" id="menu-espacios">ALQUILER DE STANDS</a>
+  <a href="contacto.html" id="menu-contacto">CONTACTANOS</a>
+</nav>
+  </header>
+
+  <section class="section-dark">
+    <div class="card-centered" style="max-width: 500px;">
+      <h2 style="text-align:center; color:#2c003e;">Crear Nueva Cuenta</h2>
+
+      <form id="registerForm" class="contact-form">
+        <label for="nombre">Nombre completo:</label>
+        <input type="text" id="nombre" name="nombre" required />
+
+        <label for="newEmail">Correo electrónico:</label>
+        <input type="email" id="newEmail" name="email" required />
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" required />
+
+        <label for="newPassword">Contraseña:</label>
+        <input type="password" id="newPassword" name="password" required />
+
+        <label for="confirmPassword">Confirmar contraseña:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required />
+
+        <label for="newTipo">Tipo de cuenta:</label>
+        <select id="newTipo" name="tipo" required>
+          <option value="">Seleccione una opción</option>
+          <option value="gestor">👔 Gestor / Empresario</option>
+          <option value="asistente">🎟️ Asistente / Visitante</option>
+          <option value="staff">🔧 Staff / Operativo</option>
+        </select>
+
+        <p id="formError" style="color: red; font-weight: bold; margin-top: 10px;"></p>
+        <p id="formSuccess" style="color: green; font-weight: bold; margin-top: 10px;"></p>
+
+        <button type="submit" class="btn-gold">Crear Cuenta</button>
+      </form>
+
+      <p style="text-align:center; margin-top:20px;">
+        ¿Ya tienes una cuenta? <a href="login.html" style="color: #2c003e; font-weight: bold;">Inicia sesión aquí</a>
+      </p>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('registerForm');
+      const errorBox = document.getElementById('formError');
+      const successBox = document.getElementById('formSuccess');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nombre = form.nombre.value.trim();
+        const email = document.getElementById("newEmail").value.trim();
+        const telefono = form.telefono.value.trim();
+        const pass = document.getElementById("newPassword").value;
+        const confirm = form.confirmPassword.value;
+        const tipo = document.getElementById("newTipo").value;
+
+        if (!nombre || nombre.length < 3) return mostrarError("El nombre debe tener al menos 3 caracteres.");
+        if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return mostrarError("Correo electrónico inválido.");
+        if (!telefono || !/^\d{10}$/.test(telefono)) return mostrarError("Teléfono inválido (10 dígitos).");
+        if (!pass || pass.length < 6) return mostrarError("Contraseña mínima de 6 caracteres.");
+        if (pass !== confirm) return mostrarError("Las contraseñas no coinciden.");
+        if (!tipo) return mostrarError("Selecciona un tipo de cuenta.");
+
+        // Verificamos que el usuario no exista
+        const usersDB = JSON.parse(localStorage.getItem("usersDB")) || [];
+        if (usersDB.find(u => u.email === email)) {
+          return mostrarError("Este correo ya está registrado.");
+        }
+
+        // Guardar nuevo usuario
+        const nuevoUsuario = { nombre, email, telefono, password: pass, tipo };
+        usersDB.push(nuevoUsuario);
+        localStorage.setItem("usersDB", JSON.stringify(usersDB));
+        localStorage.setItem("loggedInUser", JSON.stringify(nuevoUsuario));
+
+        form.reset();
+        mostrarExito("✅ Cuenta registrada correctamente. Redirigiendo...");
+
+        setTimeout(() => {
+          if (tipo === "gestor") {
+            location.href = "gestionEventos.html";
+          } else if (tipo === "asistente") {
+            location.href = "tickets.html";
+          } else {
+            location.href = "home.html";
+          }
+        }, 1500);
+      });
+
+      function mostrarError(msg) {
+        errorBox.textContent = msg;
+        successBox.textContent = "";
+      }
+
+      function mostrarExito(msg) {
+        successBox.textContent = msg;
+        errorBox.textContent = "";
+      }
+    });
+  </script>
+</body>
+</html>

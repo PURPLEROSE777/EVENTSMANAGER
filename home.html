@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio - Events Manager</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-top">
+      <span class="logo">EVENTS MANAGER</span>
+      <a href="login.html" id="btn-login" class="login-button">LOGIN</a>
+      <a href="#" id="btn-logout" class="login-button hidden" onclick="logout()">CERRAR SESIÓN</a>
+    </div>
+    <nav class="navbar">
+      <a href="home.html" id="menu-home">HOME</a>
+      <a href="gestionEventos.html" id="menu-gestion">GESTIONA TUS EVENTOS</a>
+      <a href="tickets.html" id="menu-tickets">RESERVA TICKETS</a>
+      <a href="espacios.html" id="menu-espacios">ALQUILER DE STANDS</a>
+      <a href="contacto.html" id="menu-contacto">CONTACTANOS</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="main-section">
+      <div class="main-content">
+        <p>Organiza, gestiona y vive tus eventos con facilidad. Reserva tus entradas, alquila espacios y mantente al tanto de tus eventos favoritos desde una sola plataforma.</p>
+      </div>
+      <div class="main-image">
+        <img src="colferias.jpeg" alt="Imagen de evento" />
+      </div>
+    </section>
+
+    <section class="event-recommendation-section">
+      <div class="recent-events-side">
+        <h2>Eventos Recientes</h2>
+        <div id="eventos-recientes"></div>
+      </div>
+      <div class="recommendations-side">
+        <h3>Recomendaciones para asistentes</h3>
+        <ul>
+          <li>Llega con al menos 30 minutos de anticipación al evento.</li>
+          <li>Ten tu reserva lista en tu celular o impresa.</li>
+          <li>Sigue las indicaciones del personal en el lugar.</li>
+          <li>Mantente atento a nuestras notificaciones en tiempo real.</li>
+          <li>Evita llevar objetos no permitidos.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <section class="dynamic-contact">
+    <h2>¿Tienes dudas o sugerencias?</h2>
+    <form class="contact-form">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required>
+
+      <label for="correo">Correo electrónico:</label>
+      <input type="email" id="correo" required>
+
+      <label for="mensaje">Mensaje:</label>
+      <textarea id="mensaje" rows="4" required></textarea>
+
+      <button type="submit" class="btn-gold">Enviar</button>
+    </form>
+  </section>
+
+  <div class="mapa-contenido">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5147.230154686905!2d-74.08446072398716!3d4.605773895368873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f990b42c7eef9%3A0x5b12d88c5771b84e!2sEscuela%20Tecnol%C3%B3gica%20Instituto%20T%C3%A9cnico%20Central!5e1!3m2!1ses!2sco!4v1748054625060!5m2!1ses!2sco" 
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>© Copyright <span>Escuela tecnológica instituto técnico central</span> - 2025</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("eventos-recientes");
+      const eventos = JSON.parse(localStorage.getItem("eventos")) || [];
+      const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+
+      if (eventos.length === 0) {
+        container.innerHTML = "<p>No hay eventos recientes disponibles.</p>";
+        return;
+      }
+
+      container.innerHTML = "";
+
+      eventos.forEach((evento) => {
+        const reservados = reservas
+          .filter(r => r.eventName === evento.name)
+          .reduce((acc, r) => acc + r.cantidad, 0);
+
+        const disponibles = evento.capacity - reservados;
+
+        const div = document.createElement("div");
+        div.classList.add("event-card");
+
+        div.innerHTML = `
+          <h4 style="color: #2c003e;">${evento.name}</h4>
+          <p><strong>Fecha:</strong> ${evento.date}</p>
+          <p><strong>Lugar:</strong> ${evento.location}</p>
+          <p><strong>Capacidad:</strong> ${evento.capacity}</p>
+          <p><strong>Disponibles:</strong> ${Math.max(0, disponibles)}</p>
+          ${
+            disponibles > 0
+              ? `<a href="tickets.html" class="btn-gold" style="margin-top:10px; display:inline-block;">Reservar Tickets</a>`
+              : `<p style="color: red; font-weight: bold;">🎟️ Evento agotado</p>`
+          }
+        `;
+
+        container.appendChild(div);
+      });
+
+      // === Menús por tipo de usuario ===
+      const session = JSON.parse(localStorage.getItem("loggedInUser"));
+      const menuGestion = document.getElementById("menu-gestion");
+      const menuTickets = document.getElementById("menu-tickets");
+      const menuEspacios = document.getElementById("menu-espacios");
+      const loginBtn = document.getElementById("btn-login");
+      const logoutBtn = document.getElementById("btn-logout");
+
+      if (session) {
+        loginBtn.classList.add("hidden");
+        logoutBtn.classList.remove("hidden");
+
+        switch (session.tipo) {
+          case "gestor":
+            // ve todo
+            break;
+          case "asistente":
+            menuGestion.style.display = "none";
+            break;
+          case "staff":
+            menuGestion.style.display = "none";
+            menuTickets.style.display = "none";
+            break;
+        }
+      } else {
+        menuGestion.style.display = "none";
+        menuTickets.style.display = "none";
+        menuEspacios.style.display = "none";
+        loginBtn.classList.remove("hidden");
+        logoutBtn.classList.add("hidden");
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "home.html";
+    }
+  </script>
+</body>
+</html>

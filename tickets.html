@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reserva de Tickets</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="tickets.js"></script>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-top">
+      <span class="logo">EVENTS MANAGER</span>
+      <a href="home.html" class="login-button">Inicio</a>
+    </div>
+    <nav class="navbar">
+      <a href="home.html" id="menu-home">HOME</a>
+      <a href="gestionEventos.html" id="menu-gestion">GESTIONA TUS EVENTOS</a>
+      <a href="tickets.html" id="menu-tickets">RESERVA TICKETS</a>
+      <a href="espacios.html" id="menu-espacios">ALQUILER DE STANDS</a>
+      <a href="contacto.html" id="menu-contacto">CONTACTANOS</a>
+    </nav>
+  </header>
+
+  <section class="section-dark">
+    <div class="card-centered" style="max-width: 1000px;">
+      <h2 style="text-align: center; color: #d4af37; margin-bottom: 30px;">Tickets Disponibles</h2>
+      <div class="ticket-grid" id="eventTicketsContainer">
+        <!-- Las tarjetas se insertan dinámicamente desde tickets.js -->
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const session = JSON.parse(localStorage.getItem("loggedInUser"));
+
+      // Control de acceso (opcional)
+      if (!session) {
+        alert("Debes iniciar sesión para acceder a la reserva de tickets.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      const tipo = session.tipo;
+
+      // Visibilidad del menú según tipo
+      if (tipo === "asistente") {
+        ocultar("menu-gestion");
+        ocultar("menu-espacios");
+      } else if (tipo === "staff") {
+        ocultar("menu-gestion");
+        ocultar("menu-tickets");
+        mostrarOpcionCodigoPrivilegio();
+      }
+      // gestor ve todo
+
+      function ocultar(id) {
+        const el = document.getElementById(id);
+        if (el) el.style.display = "none";
+      }
+
+      // BONUS: Insertar campo especial si es staff
+      function mostrarOpcionCodigoPrivilegio() {
+        const contenedor = document.getElementById("eventTicketsContainer");
+        const extra = document.createElement("div");
+        extra.classList.add("ticket-card");
+        extra.innerHTML = `
+          <h3 style="color:#2c003e;">Código de Privilegio</h3>
+          <p>Ingresa el código otorgado por el gestor para acceder a un stand:</p>
+          <input type="text" placeholder="Ej: ABCD1234" maxlength="8" style="padding: 10px; width: 100%; margin-bottom: 10px; border-radius: 6px; border: 1px solid #ccc;">
+          <button class="btn-gold">Validar Código</button>
+        `;
+        contenedor.appendChild(extra);
+      }
+    });
+  </script>
+</body>
+</html>
